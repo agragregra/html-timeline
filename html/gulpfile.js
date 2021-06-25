@@ -1,7 +1,7 @@
 var syntax        = 'sass'; // Syntax: sass or scss;
 
 var gulp          = require('gulp'),
-		sass          = require('gulp-sass'),
+		sass          = require('gulp-sass')(require('sass')),
 		browserSync  = require('browser-sync').create(),
 		concat        = require('gulp-concat'),
 		uglify        = require('gulp-uglify'),
@@ -25,7 +25,7 @@ function bsReload(done) { browserSync.reload(); done() };
 
 gulp.task('styles', function() {
 	return gulp.src('app/'+syntax+'/**/*.'+syntax+'')
-	.pipe(sass({ outputStyle: 'expand' }).on("error", notify.onError()))
+	.pipe(sass({ outputStyle: 'expanded' }).on("error", notify.onError()))
 	.pipe(rename({ suffix: '.min', prefix : '' }))
 	.pipe(autoprefixer(['last 15 versions']))
 	.pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
