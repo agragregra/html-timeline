@@ -1,0 +1,109 @@
+@import "vars"
+@import "fonts"
+@import "libs"
+
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.65
+	font-family: $default-font
+	overflow-x: hidden
+	color: $text
+	input, textarea
+		border: #666 1px solid
+		outline: none
+		&:focus:required:invalid
+			border-color: red
+		&:required:valid
+			border-color: green
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+	&.img-width
+		width: 100%
+
+.text-center
+	text-align: center
+
+b, strong
+	font-weight: bold
+
+// Custom Sass
+
+.timeline
+	padding: $gutter*2 0
+	+media-breakpoint-down(xs)
+		padding: $gutter*2 5%
+	&-item
+		padding: $gutter/2 0
+		position: relative
+
+		&::before
+			content: '●'
+			position: absolute
+			width: 1px
+			height: 100%
+			background-color: $gray
+			color: $accent
+			font-size: 28px
+			line-height: 220%
+			text-indent: -8px
+
+		&:nth-child(odd)
+			text-align: right
+			padding-right: 90+$gutter
+			.timeline-item-img
+				right: $gutter
+			&::before
+				right: 0
+			+media-breakpoint-down(xs)
+				text-align: left
+				padding-left: 90+$gutter
+				padding-right: 0
+				.timeline-item-img
+					left: $gutter
+				&::before
+					left: -1px
+
+		&:nth-child(even)
+			+make-col-offset(6)
+			padding-left: 90+$gutter
+			.timeline-item-img
+				left: $gutter
+			&::before
+				left: -1px
+			+media-breakpoint-down(xs)
+				+make-col-offset(0)
+
+		&-img
+			width: 74px
+			height: 74px
+			overflow: hidden
+			border-radius: 100%
+			border: 5px solid $gray
+			position: absolute
+			img
+				width: 100%
+		p
+			line-height: 1.4
+			margin: 4px 0 0 0
+			span
+				display: block
+				font-size: 12px
+				color: $accent
+				font-weight: bold
+				margin-top: 5px
+
+// Custom Sass End
+
+@import "media" // Always at the end
